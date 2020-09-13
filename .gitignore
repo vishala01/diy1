@@ -2,3 +2,7 @@ venv
 .idea
 .git
 db.sqlite3
+
+mysite/__pycache
+polls/__pycache
+api/__pycache

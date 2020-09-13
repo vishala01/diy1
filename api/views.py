@@ -20,6 +20,7 @@ def get_products(request, store_id):
         if len(products) == 0:
             raise ObjectDoesNotExist('store does not exist or there is no product at store')
         serializer = ProductSerializer(products, many=True)
+
         return JsonResponse({'products': serializer.data}, safe=False, status=status.HTTP_200_OK)
     except ObjectDoesNotExist as e:
         return JsonResponse({'message': str(e)}, safe=False, status=status.HTTP_404_NOT_FOUND)
@@ -42,6 +43,5 @@ def add_products(request, store_id):
     except ObjectDoesNotExist as e:
         return JsonResponse({'error': str(e)}, safe=False, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
-        print(e)
         return JsonResponse({'error': 'Something terrible went wrong'}, safe=False,
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
